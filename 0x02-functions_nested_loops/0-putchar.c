@@ -3,7 +3,6 @@
 /**
  * main - Print "_putchar" followed by a new line.
  *
-#include "main.h"
  * Description: You are not allowed to include standard libraries.
  *
  * Return: 0
