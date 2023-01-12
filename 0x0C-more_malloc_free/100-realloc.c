@@ -3,37 +3,40 @@
 #include <stdlib.h>
 
 /**
- * _calloc - allocateds memory for an array.
+ * _realloc - reallocates a memory block.
  *
- * @nmemb: number of elements.
+ * @ptr: pointer to the memory previously allocated.
  *
- * @size: size of bytes.
+ * @old_size: size, in bytes, of the allocated space of ptr.
  *
- * Return: pointer to the allocated memory.
+ * @new_size: new size, in bytes, of the new memory block.
  *
- * if nmemb or size is 0, returns NULL.
+ * Return: ptr
  *
- * if malloc fail, returns NULL.
+ * if new_size == old_size, returns ptr without changes.
+ *
+ * if malloc fails, returns NULL.
  *
  */
 
-void *_calloc(unsigned int nmemb, unsigned int size)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 {
-	char *p;
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
 
-	unsigned int i;
-
-	if (nmemb == 0 || size == 0)
 		return (NULL);
+	}
+	if (ptr == NULL)
+		ptr = malloc(new_size);
 
-	p = malloc(nmemb * size);
+	if (new_size == old_size)
+		return (ptr);
 
-	if (p == NULL)
-		return (NULL);
+	free(ptr);
 
-	for (i = 0; i < (nmemb * size); i++)
-		p[i] = 0;
+	ptr = malloc(new_size);
 
-	return (p);
+	return (ptr);
 }
