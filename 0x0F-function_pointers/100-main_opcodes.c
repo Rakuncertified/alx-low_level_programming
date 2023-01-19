@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 		exit(1);
 
 	}
-	
+
 	nbytes = atoi(argv[1]);
 
 	if (nbytes < 0)
